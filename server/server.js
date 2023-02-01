@@ -40,7 +40,8 @@ const isValidYouTubeUrl = (url) => {
 //let videos = [];
 app.get("/", (res, req) => {
   //res.json({ message: "Welcome to my Videos API!" });
-  console.log(__dirname + "/index.html");
+  //console.log(__dirname + "/index.html");
+  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 
 app.get("/videos", async (req, res) => {
