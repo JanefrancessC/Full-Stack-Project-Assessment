@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 
-const OrderedData = ({ videos }) => {
+const OrderedData = ({ videos, setVideos }) => {
   const [orderedData, setOrderedData] = useState(true);
 
   const preferedOrder = () => {
-    const asc = videos.sort((a, b) => a.rating - b.rating);
-    const desc = videos.sort((a, b) => b.rating - a.rating);
+    let tempArray = [...videos];
 
-    orderedData ? setOrderedData(asc) : setOrderedData(desc);
+    if (orderedData) {
+      let desc = tempArray.sort((a, b) => b.rating - a.rating);
+      setVideos(desc);
+    } else {
+      let asc = tempArray.sort((a, b) => a.rating - b.rating);
+      setVideos(asc);
+    }
+    console.log(orderedData);
+    setOrderedData(!orderedData);
   };
   return (
     <div>

@@ -34,7 +34,7 @@ function App() {
         />
         <SearchBar videos={videos} setVideos={setVideos} />
       </section>
-      <OrderedData videos={videos} />
+      <OrderedData videos={videos} setVideos={setVideos} />
       <section className="Video-data">
         <DisplayVideos
           videos={videos}

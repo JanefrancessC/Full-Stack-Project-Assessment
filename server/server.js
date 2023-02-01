@@ -39,27 +39,29 @@ const isValidYouTubeUrl = (url) => {
 // If you want, you can copy "exampleresponse.json" into here to have some data to work with
 //let videos = [];
 app.get("/", (res, req) => {
-  
-  res.send('Hello from the Server!')
+  res.send("Hello from the Server!");
 });
 
 app.get("/videos", async (req, res) => {
   try {
-    let data = await pool.query("SELECT * FROM videos ORDER BY rating DESC");
+    let data;
     const order = req.query.order;
 
     if (order === "asc") {
-      let data = await pool
+      data = await pool
         .query("SELECT * FROM videos ORDER BY rating ASC")
         .then((result) => res.json(result.rows));
       return;
     }
     if (order === "desc") {
-      let data = await pool
+      data = await pool
         .query("SELECT * FROM videos ORDER BY rating DESC")
         .then((result) => res.json(result.rows));
       return;
     }
+    data = await pool
+      .query("SELECT * FROM videos")
+      .then((result) => res.json(result.rows));
     res.json(data.rows);
   } catch (err) {
     console.error(err.message);
