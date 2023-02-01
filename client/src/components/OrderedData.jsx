@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const OrderedData = ({ data }) => {
+const OrderedData = ({ videos }) => {
   const [orderedData, setOrderedData] = useState(true);
 
   const preferedOrder = () => {
-    const asc = data.sort((a, b) => a.rating - b.rating);
-    const desc = data.sort((a, b) => b.rating - a.rating);
+    const asc = videos.sort((a, b) => a.rating - b.rating);
+    const desc = videos.sort((a, b) => b.rating - a.rating);
 
     orderedData ? setOrderedData(asc) : setOrderedData(desc);
   };

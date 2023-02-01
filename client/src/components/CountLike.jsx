@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import './CountLike.css'
-const CountLike = ({setRating}) => {
+import "./CountLike.css";
+const CountLike = ({ setRating }) => {
   const [upvote, setUpvote] = useState(0);
   const [downvote, setDownvote] = useState(0);
   const handleUpvote = () => {
-    setRating(prev => prev + 1);
     setUpvote((prev) => prev + 1);
+    setRating((prev) => prev + 1);
   };
 
   const handleDownvote = () => {
+    setDownvote((prev) => (prev < 0 ? 0 : prev + 1));
     setRating((prev) => prev - 1);
-    setDownvote((prev) => (downvote < 0 ? 0 : prev + 1));
+    //setRating(newRating);
   };
 
   return (

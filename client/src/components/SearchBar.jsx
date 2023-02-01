@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 
-const SearchBar = ({ data, setData }) => {
+const SearchBar = ({ videos, setVideos }) => {
   const [term, setTerm] = useState("");
   //This handles the search bar input and finding the results
 
   const onInputChange = (e) => {
     setTerm(e.target.value);
-    let searchResult = data.filter((video) =>
+    let searchResult = videos.filter((video) =>
       video.title.toLowerCase().includes(term.toLowerCase())
     );
-    setData(searchResult);
+    setVideos(searchResult);
     if (!e.target.value) {
       fetch(`/videos`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       })
         .then((res) => res.json())
-        .then((data) => setData(data))
+        .then((data) => setVideos(data))
         .catch((err) => console.error(err));
     }
+   
   };
   return (
     <div className="Search-video Forms-container">

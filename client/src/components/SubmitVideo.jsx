@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SubmitVideo.css";
 
-const SubmitVideo = ({ data, setData, rating, setRating }) => {
+const SubmitVideo = ({ videos, setVideos, rating, setRating }) => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [showAddVideo, setShowAddVideo] = useState(false);
@@ -21,7 +21,7 @@ const SubmitVideo = ({ data, setData, rating, setRating }) => {
       url: url,
       rating: rating,
     };
-    let tempData = [...data, newVideo];
+    let tempData = [...videos, newVideo];
     //console.log(tempData);
     if (newVideo.title === "") {
       alert("Please enter a valid title");
@@ -40,7 +40,7 @@ const SubmitVideo = ({ data, setData, rating, setRating }) => {
         .then((data) => console.log(data))
         .catch((err) => console.error(err));
 
-      setData(tempData);
+      setVideos(tempData);
       setTitle("");
       setUrl("");
     }
@@ -84,7 +84,11 @@ const SubmitVideo = ({ data, setData, rating, setRating }) => {
             />
           </label>
           <div>
-            <button className="buttons btn-add" type="submit" onClick={addVideo}>
+            <button
+              className="buttons btn-add"
+              type="submit"
+              onClick={addVideo}
+            >
               Add
             </button>
             <button className="buttons btn-add" onClick={hideAddVideo}>

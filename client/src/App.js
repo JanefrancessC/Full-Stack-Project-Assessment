@@ -10,13 +10,13 @@ import OrderedData from "./components/OrderedData";
 //getAllData, addVideo, DeleteVideo fetch data from backend
 // createSQL AND connect to DB
 function App() {
-  const [data, setData] = useState([]);
+  const [videos, setVideos] = useState([]);
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
     fetch("/videos")
       .then((res) => res.json())
-      .then((data) => setData(data))
+      .then((data) => setVideos(data))
       .catch((error) => console.error(error));
   }, []);
 
@@ -27,16 +27,20 @@ function App() {
       </header>
       <section className="Video-query">
         <SubmitVideo
-          setData={setData}
-          data={data}
+          setVideos={setVideos}
+          videos={videos}
           rating={rating}
           setRating={setRating}
         />
-        <SearchBar data={data} setData={setData} />
+        <SearchBar videos={videos} setVideos={setVideos} />
       </section>
-      <OrderedData data={data} />
+      <OrderedData videos={videos} />
       <section className="Video-data">
-        <DisplayVideos data={data} setData={setData} setRating={setRating} />
+        <DisplayVideos
+          videos={videos}
+          setVideos={setVideos}
+          setRating={setRating}
+        />
       </section>
     </div>
   );
