@@ -5,12 +5,14 @@ const { Pool } = require("pg");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 app.use(express.json());
 dotenv.config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 //Add validators for same url and also for the delete button if id doesn't exist
 
