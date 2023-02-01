@@ -12,7 +12,7 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 //Add validators for same url and also for the delete button if id doesn't exist
 
@@ -39,9 +39,8 @@ const isValidYouTubeUrl = (url) => {
 // If you want, you can copy "exampleresponse.json" into here to have some data to work with
 //let videos = [];
 app.get("/", (res, req) => {
-  //res.json({ message: "Welcome to my Videos API!" });
-  //console.log(__dirname + "/index.html");
-  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+  
+  res.send('Hello from the Server!')
 });
 
 app.get("/videos", async (req, res) => {
